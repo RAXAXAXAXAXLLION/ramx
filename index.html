@@ -9,9 +9,10 @@ onkeydown=(e)=>{
 if(e.keyCode==32){
 c.width=innerWidth
 c.height=innerHeight-64
+equation=prompt("Enter your equation here.")
 for(x=0;x<innerWidth;x++){
 for(y=0;y<innerHeight;y++){
-eval(prompt("Enter your equation here."))
+eval(equation)
 if(r<0){r=0}
 if(r>1){r=1}
 if(g<0){g=0}

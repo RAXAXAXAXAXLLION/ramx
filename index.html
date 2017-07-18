@@ -1,12 +1,14 @@
-<canvas id="c"></canvas><input id="equation"><script>
+<canvas id="c"></canvas><input id="equation"><input id="draw"><script>
 document.body.style.margin="0 0 0 0"
 ctx=c.getContext("2d")
 equation.type="text"
+draw.type="button"
+draw.value="Draw equation."
 equation.width="50"
 r=0
 g=0
 b=0
-setInterval(()=>{
+draw.onclick=()=>{
 c.width=innerWidth
 c.height=innerHeight-28
 for(x=0;x<innerWidth;x++){
@@ -14,6 +16,6 @@ for(y=0;y<innerHeight;y++){
 eval(equation.value)
 ctx.fillStyle="rgb("+r+","+g+","+b+")"
 ctx.fillRect(x,y,1,1)
-}}},10000)
+}}}
 if(top.location.href=="http://ramx.tk/"){}else{top.location.replace("http://ramx.tk/")}
 </script>

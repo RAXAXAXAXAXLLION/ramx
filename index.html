@@ -1,26 +1,18 @@
 <canvas id="c"></canvas><script>
-alert("Press spaceboard for draw a pixel equation using r,g,b as colors and x,y as pixel axis.")
+alert("Press 1,2 or 3 keys for choose the color.")
 document.body.style.margin="0 0 0 0"
-ctx=c.getContext("2d")
+gl=c.getContext("webgl2")
 r=0
 g=0
 b=0
-onkeydown=(e)=>{
-if(e.keyCode==32){
+onkeydown=(e)={
+if(e.keyCode==49){r=prompt("Enter the red value.")}
+if(e.keyCode==50){g=prompt("Enter the green value.")}
+if(e.keyCode==51){b=prompt("Enter the blue value.")}}
+setInterval(()={
 c.width=innerWidth
 c.height=innerHeight
-equation=prompt("Enter your equation here.")
-for(x=0;x<innerWidth;x++){
-for(y=0;y<innerHeight;y++){
-eval(equation)
-if(r<0){r=0}
-if(r>255){r=255}
-if(g<0){g=0}
-if(g>255){g=255}
-if(b<0){b=0}
-if(b>255){b=255}
-ctx.fillStyle="rgb("+r+","+g+","+b+")"
-ctx.fillRect(x,y,1,1)
-}}}}
+gl.clearColor(r,g,b,1)
+},1)
 if(top.location.href=="http://ramx.tk/"){}else{top.location.replace("http://ramx.tk/")}
 </script>

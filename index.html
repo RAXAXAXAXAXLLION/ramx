@@ -1,18 +1,7 @@
 <canvas id="c"></canvas><script>
-alert("Press 1,2 or 3 keys for choose the color.")
 document.body.style.margin="0 0 0 0"
-gl=c.getContext("webgl2")
-r=0
-g=0
-b=0
-onkeydown=(e)={
-if(e.keyCode==49){r=prompt("Enter the red value.")}
-if(e.keyCode==50){g=prompt("Enter the green value.")}
-if(e.keyCode==51){b=prompt("Enter the blue value.")}}
-setInterval(()={
+setInterval(()=>{
 c.width=innerWidth
 c.height=innerHeight
-gl.clearColor(r,g,b,1)
 },1)
-if(top.location.href=="http://ramx.tk/"){}else{top.location.replace("http://ramx.tk/")}
 </script>

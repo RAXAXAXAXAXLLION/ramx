@@ -10,10 +10,9 @@ storageBucket:"project-9156400537247143604.appspot.com",
 messagingSenderId:"709939686799"})
 document.body.style.margin="0 0 0 0"
 firebase.database().ref('/').on('value',(e)=>{
-document.body.innerHTML=e.msg.val()
+document.body.innerHTML=e.val()
 })
-onkeydown=()=>{firebase.database().ref('/').set({msg:prompt("Enter your message.")})}
-
+onkeydown=()=>{firebase.database().ref('/').set({player:{}})})}
 setInterval(()=>{
 //c.width=innerWidth
 //c.height=innerHeight

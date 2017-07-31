@@ -1,6 +1,5 @@
 <script src="https://www.gstatic.com/firebasejs/4.2.0/firebase.js"></script>
 <canvas id="c"></canvas><script>
-//Init event.
 firebase.initializeApp({
 apiKey:"AIzaSyDjmCrbhZxIvgnwqID_VJ4qH6rIYroGXrk",
 authDomain:"project-9156400537247143604.firebaseapp.com",
@@ -11,7 +10,6 @@ messagingSenderId:"709939686799"})
 document.body.style.margin="0 0 0 0"
 firebase.database().ref('msg').on('value',function(e){document.body.innerHTML=e.val()})
 onkeydown=function(){firebase.database().ref('/').set({msg:"hola"})}
-//Update event.
 setInterval(()=>{
 //c.width=innerWidth
 //c.height=innerHeight

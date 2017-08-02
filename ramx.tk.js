@@ -18,7 +18,7 @@ setInterval(()=>{
 //c.width=innerWidth
 //c.height=innerHeight
 document.body.innerHTML=""
-//firebase.database().ref(id).set({x:input.x})
-if(k[37]){input.x-=1;console.log("Left pressed.")}
+firebase.database().ref(id).set({x:input.x})
+if(k[37]){input.x-=1}
 if(k[39]){input.x+=1}
 },1)

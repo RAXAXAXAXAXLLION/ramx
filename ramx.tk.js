@@ -8,7 +8,7 @@ authDomain:"project-9156400537247143604.firebaseapp.com",
 databaseURL:"https://project-9156400537247143604.firebaseio.com"})
 firebase.database().ref('/').on('value',(e)=>{
 for(i in e.val()){
-document.write(e.val()[i].x)
+document.write(e.val()[i].x+"<br>")
 }})
 onkeydown=onkeyup=(e)=>{k[e.keyCode]=e.type=="keydown"}
 id=Math.floor(Math.random()*Math.pow(10,10))

@@ -6,7 +6,10 @@ apiKey:"AIzaSyDjmCrbhZxIvgnwqID_VJ4qH6rIYroGXrk",
 storageBucket:"project-9156400537247143604.appspot.com",
 authDomain:"project-9156400537247143604.firebaseapp.com",
 databaseURL:"https://project-9156400537247143604.firebaseio.com"})
-firebase.database().ref('/').on('value',(e)=>{output=e.val()})
+firebase.database().ref('/').on('value',(e)=>{
+for(i in e.val()){
+document.write(e.val()[i].x)
+}})
 onkeydown=onkeyup=(e)=>{k[e.keyCode]=e.type=="keydown"}
 id=Math.floor(Math.random()*Math.pow(10,10))
 document.body.style.margin="0 0 0 0"
@@ -19,6 +22,4 @@ document.body.innerHTML=""
 firebase.database().ref(id).set({x:input.x})
 if(k[37]){input.x-=1}
 if(k[39]){input.x+=1}
-for(i in output){
-document.write(output[i].x)
-}},1)
+},1)

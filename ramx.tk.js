@@ -21,4 +21,4 @@ document.body.innerHTML=""
 firebase.database().ref(id).set({x:input.x})
 if(k[37]){input.x-=1}
 if(k[39]){input.x+=1}
-},1)
+},1000)

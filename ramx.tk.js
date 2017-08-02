@@ -10,7 +10,7 @@ firebase.database().ref('/').on('value',(e)=>{out=e.val()})
 onkeydown=onkeyup=(e)=>{k[e.keyCode]=e.type=="keydown"}
 id=Math.floor(Math.random()*Math.pow(10,10))
 document.body.style.margin="0 0 0 0"
-in={x:0}
+in{x:0}
 onkeydown=()=>{}
 setInterval(()=>{
 //c.width=innerWidth

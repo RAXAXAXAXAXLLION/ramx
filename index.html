@@ -1,6 +1,19 @@
-<script>
-net=new WebSocket("wss://ramxcore.openode.io:8888/")
-net.onmessage=(e)=>{eval(e.data)}
+<body></body><script>
+document.body.style.margin="0"
+c=document.createElement("canvas")
+document.body.appendChild(c)
+ctx=c.getContext("2d")
+img=ctx.getImageData(0,0,32,32)
+setInterval(()=>{
+c.width=innerWidth
+c.height=innerHeight
+for(x=0;x<32;x++){
+for(y=0;y<32;y++){
+new Uint8Array(img.data.buffer)[0+x*4+y*4*32]='+w.c.r
+new Uint8Array(img.data.buffer)[1+x*4+y*4*32]='+w.c.g
+new Uint8Array(img.data.buffer)[2+x*4+y*4*32]='+w.c.b
+new Uint8Array(img.data.buffer)[3+x*4+y*4*32]=255
+}}},1)
 if(top.location.href=="ramx.tk"){}
 else{location.replace("ramx.tk")}
 </script>

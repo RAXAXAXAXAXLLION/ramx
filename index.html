@@ -1,27 +1,141 @@
 <script>
 setTimeout(()=>{
-document.title="ramx.tk"
-document.body.style.margin="0"
 c=document.createElement("canvas")
-document.body.appendChild
-gl=c.getContext("webgl2")
-r=200
-g=200
-b=200
-onkeydown=(e)=>{
-if(e.keyCode=="49"){r=prompt("Enter the red channel value.")}
-if(e.keyCode=="50"){g=prompt("Enter the red channel value.")}
-if(e.keyCode=="51"){b=prompt("Enter the red channel value.")}
-}
-setInterval(()=>{
-c.width=innerWidth
-c.height=innerHeight
-gl.clearColor(r,g,b,1)
-gl.clear(gl.COLOR_BUFFER_BIT)
-for(x=0;x<1000;x++){
-for(y=0;y<1000;y++){
-}}
+document.body.appendChild(c)
+ctx=c.getContext("2d")
+k=[]
+onkeydown=onkeyup=function(e){k[e.keyCode]=e.type=="keydown"}
+player={}
+sun={}
+lava={}
+sun2={}
+bullet={}
+id=0
+time=0
+gen_player()
+setInterval(function(){
+ctx.clearRect(0,0,960,640)
+for(id in player){player[id].update()}
+for(id in sun){sun[id].update()}
+for(id in lava){lava[id].update()}
+for(id in sun2){sun2[id].update()}
+for(id in bullet){bullet[id].update()}
+time+=1
 },1)
+player={}
+function gen_player(){
+id++
+player[id]={x:Math.random()*960,y:Math.random()*640,xs:0,ys:0,name:prompt("What's your name?",""),shot:0,update:function(){
+ctx.beginPath()
+ctx.rect(this.x-16,this.y-16,32,32)
+ctx.closePath()
+ctx.fillStyle="#00FF00"
+ctx.fill()
+ctx.lineWidth="4"
+ctx.strokeStyle="#008800"
+ctx.stroke()
+this.x+=this.xs
+this.y+=this.ys
+ctx.font="20px Impact"
+ctx.fillStyle="#FFFFFF"
+ctx.fillText(this.name,this.x+32,this.y)
+if(k[37]){this.xs-=0.005}
+if(k[38]){this.ys-=0.005}
+if(k[39]){this.xs+=0.005}
+if(k[40]){this.ys+=0.005}
+if(this.x<0){this.xs+=0.25}
+if(960<this.x){this.xs-=0.25}
+if(this.y<0){this.ys+=0.25}
+if(640<this.y){this.ys-=0.25}
+for(id in lava){
+if(this.x<lava[id].x+32){if(this.x>lava[id].x-32){if(this.y<lava[id].y+32){if(this.y>lava[id].y-32){this.x=1/0;this.y=1/0;alert("GAME OVER");alert("You survived "+time+" frames")}}}}
+}
+}}}
+setInterval(function(){
+id++
+sun[id]={x:Math.random()*960,y:Math.random()*640,xs:Math.random()*2-1,ys:Math.random()*2-1,update:function(){
+ctx.beginPath()
+ctx.arc(this.x,this.y,16,0,2*Math.PI)
+ctx.closePath()
+ctx.fillStyle="#FFFF00"
+ctx.fill()
+ctx.lineWidth="4"
+ctx.strokeStyle="#888800"
+ctx.stroke()
+this.x+=this.xs
+this.y+=this.ys
+if(this.x<0){this.xs+=1}
+if(960<this.x){this.xs-=1}
+if(this.y<0){this.ys+=1}
+if(640<this.y){this.ys-=1}
+for(id in player){
+player[id].xs+=0.5*(player[id].x-this.x)/(Math.pow(Math.pow(player[id].x-this.x,2)+Math.pow(player[id].y-this.y,2),0.5)*(Math.pow(Math.pow(player[id].x-this.x,2)+Math.pow(player[id].y-this.y,2),0.5)))
+player[id].ys+=0.5*(player[id].y-this.y)/(Math.pow(Math.pow(player[id].x-this.x,2)+Math.pow(player[id].y-this.y,2),0.5)*(Math.pow(Math.pow(player[id].x-this.x,2)+Math.pow(player[id].y-this.y,2),0.5)))
+}
+}}},40000)
+setInterval(function(){
+id++
+lava[id]={x:Math.random()*960,y:Math.random()*640,xs:Math.random()*2-1,ys:Math.random()*2-1,update:function(){
+ctx.beginPath()
+ctx.rect(this.x-16,this.y-16,32,32)
+ctx.closePath()
+ctx.fillStyle="#FF0000"
+ctx.fill()
+ctx.lineWidth="4"
+ctx.strokeStyle="#880000"
+ctx.stroke()
+this.x+=this.xs
+this.y+=this.ys
+if(this.x<0){this.xs+=0.25}
+if(960<this.x){this.xs-=0.25}
+if(this.y<0){this.ys+=0.25}
+if(640<this.y){this.ys-=0.25}
+}}},5000)
+function gen_bullet(x,y,xs,ys){
+id++
+bullet[id]={x:x,y:y,xs:xs,ys:ys,update:function(){
+ctx.beginPath()
+ctx.rect(this.x-16,this.y-16,32,32)
+ctx.closePath()
+ctx.fillStyle="#FFEE00"
+ctx.fill()
+ctx.lineWidth="4"
+ctx.strokeStyle="#886600"
+ctx.stroke()
+this.x+=this.xs
+this.y+=this.ys
+if(this.x<0){this.xs+=0.25}
+if(960<this.x){this.xs-=0.25}
+if(this.y<0){this.ys+=0.25}
+if(640<this.y){this.ys-=0.25}
+}}}
+setInterval(function(){
+id++
+sun2[id]={x:Math.random()*960,y:Math.random()*640,xs:Math.random()*2-1,ys:Math.random()*2-1,update:function(){
+ctx.beginPath()
+ctx.arc(this.x,this.y,16,0,2*Math.PI)
+ctx.closePath()
+ctx.fillStyle="#FFFFAA"
+ctx.fill()
+ctx.lineWidth="4"
+ctx.strokeStyle="#888855"
+ctx.stroke()
+this.x+=this.xs
+this.y+=this.ys
+if(this.x<0){this.xs+=0.25}
+if(960<this.x){this.xs-=0.25}
+if(this.y<0){this.ys+=0.25}
+if(640<this.y){this.ys-=0.25}
+for(id in player){
+player[id].xs+=4*(player[id].x-this.x)/(Math.pow(Math.pow(player[id].x-this.x,2)+Math.pow(player[id].y-this.y,2),0.5)*(Math.pow(Math.pow(player[id].x-this.x,2)+Math.pow(player[id].y-this.y,2),0.5)))
+player[id].ys+=4*(player[id].y-this.y)/(Math.pow(Math.pow(player[id].x-this.x,2)+Math.pow(player[id].y-this.y,2),0.5)*(Math.pow(Math.pow(player[id].x-this.x,2)+Math.pow(player[id].y-this.y,2),0.5)))
+}
+for(id in lava){
+lava[id].xs+=4*(lava[id].x-this.x)/(Math.pow(Math.pow(lava[id].x-this.x,2)+Math.pow(lava[id].y-this.y,2),0.5)*(Math.pow(Math.pow(lava[id].x-this.x,2)+Math.pow(lava[id].y-this.y,2),0.5)))
+lava[id].ys+=4*(lava[id].y-this.y)/(Math.pow(Math.pow(lava[id].x-this.x,2)+Math.pow(lava[id].y-this.y,2),0.5)*(Math.pow(Math.pow(lava[id].x-this.x,2)+Math.pow(lava[id].y-this.y,2),0.5)))
+}
+}}},160000)
+gen_player()
 if(top.location.href!=="ramx.tk"){top.location.href="http://ramx.tk/"}
 },1)
 </script>

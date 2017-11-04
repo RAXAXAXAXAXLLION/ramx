@@ -14,7 +14,10 @@ id=0
 time=0
 gen_player()
 setInterval(function(){
-ctx.clearRect(0,0,960,640)
+c.width=innerWidth
+c.height=innerHeight
+ctx.fillStyle="rgb(0,0,0)"
+ctx.fillRect(0,0,c.width,c.height)
 for(id in player){player[id].update()}
 for(id in sun){sun[id].update()}
 for(id in lava){lava[id].update()}

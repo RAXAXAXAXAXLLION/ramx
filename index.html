@@ -28,7 +28,7 @@ time+=1
 player={}
 function gen_player(){
 id++
-player[id]={x:Math.random()*960,y:Math.random()*640,xs:0,ys:0,name:prompt("What's your name?",""),shot:0,update:function(){
+player[id]={x:Math.random()*960,y:Math.random()*640,xs:0,ys:0,name:Math.floor(Math.random()*Math.pow(10,10)),shot:0,update:function(){
 ctx.beginPath()
 ctx.rect(this.x-16,this.y-16,32,32)
 ctx.closePath()

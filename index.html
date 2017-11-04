@@ -2,6 +2,10 @@
 setTimeout(()=>{
 document.title="ramx.tk"
 if(top.location.href!=="ramx.tk"){top.location.href="http://ramx.tk/"}
+document.body.style.margin="0"
+c=document.createElement("canvas")
+document.body.appendChild
+gl=c.getContext("2d")
 r=200
 g=200
 b=200
@@ -11,8 +15,10 @@ if(e.keyCode=="50"){g=prompt("Enter the red channel value.")}
 if(e.keyCode=="51"){b=prompt("Enter the red channel value.")}
 }
 setInterval(()=>{
-ClearColor(r,g,b,1)
-clear(gl.COLOR_BUFFER_BIT)
+c.width=innerWidth
+c.height=innerHeight
+gl.ClearColor(r,g,b,1)
+gl.clear(gl.COLOR_BUFFER_BIT)
 for(x=0;x<1000;x++){
 for(y=0;y<1000;y++){
 }}

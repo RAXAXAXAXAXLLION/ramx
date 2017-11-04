@@ -29,7 +29,7 @@ time+=1
 player={}
 function gen_player(){
 id++
-player[id]={x:Math.random()*960,y:Math.random()*640,xs:0,ys:0,name:Math.floor(Math.random()*Math.pow(10,10)),shot:0,update:function(){
+player[id]={x:Math.random()*c.width,y:Math.random()*c.height,xs:0,ys:0,name:Math.floor(Math.random()*Math.pow(10,10)),shot:0,update:function(){
 ctx.beginPath()
 ctx.rect(this.x-16,this.y-16,32,32)
 ctx.closePath()
@@ -48,16 +48,16 @@ if(k[38]){this.ys-=0.005}
 if(k[39]){this.xs+=0.005}
 if(k[40]){this.ys+=0.005}
 if(this.x<0){this.xs+=0.25}
-if(960<this.x){this.xs-=0.25}
+if(c.width<this.x){this.xs-=0.25}
 if(this.y<0){this.ys+=0.25}
-if(640<this.y){this.ys-=0.25}
+if(c.height<this.y){this.ys-=0.25}
 for(id in lava){
 if(this.x<lava[id].x+32){if(this.x>lava[id].x-32){if(this.y<lava[id].y+32){if(this.y>lava[id].y-32){this.x=1/0;this.y=1/0;alert("GAME OVER");alert("You survived "+time+" frames")}}}}
 }
 }}}
 setInterval(function(){
 id++
-sun[id]={x:Math.random()*960,y:Math.random()*640,xs:Math.random()*2-1,ys:Math.random()*2-1,update:function(){
+sun[id]={x:Math.random()*c.width,y:Math.random()*c.height,xs:Math.random()*2-1,ys:Math.random()*2-1,update:function(){
 ctx.beginPath()
 ctx.arc(this.x,this.y,16,0,2*Math.PI)
 ctx.closePath()
@@ -69,9 +69,9 @@ ctx.stroke()
 this.x+=this.xs
 this.y+=this.ys
 if(this.x<0){this.xs+=1}
-if(960<this.x){this.xs-=1}
+if(c.width<this.x){this.xs-=1}
 if(this.y<0){this.ys+=1}
-if(640<this.y){this.ys-=1}
+if(c.height<this.y){this.ys-=1}
 for(id in player){
 player[id].xs+=0.5*(player[id].x-this.x)/(Math.pow(Math.pow(player[id].x-this.x,2)+Math.pow(player[id].y-this.y,2),0.5)*(Math.pow(Math.pow(player[id].x-this.x,2)+Math.pow(player[id].y-this.y,2),0.5)))
 player[id].ys+=0.5*(player[id].y-this.y)/(Math.pow(Math.pow(player[id].x-this.x,2)+Math.pow(player[id].y-this.y,2),0.5)*(Math.pow(Math.pow(player[id].x-this.x,2)+Math.pow(player[id].y-this.y,2),0.5)))
@@ -79,7 +79,7 @@ player[id].ys+=0.5*(player[id].y-this.y)/(Math.pow(Math.pow(player[id].x-this.x,
 }}},40000)
 setInterval(function(){
 id++
-lava[id]={x:Math.random()*960,y:Math.random()*640,xs:Math.random()*2-1,ys:Math.random()*2-1,update:function(){
+lava[id]={x:Math.random()*c.width,y:Math.random()*c.height,xs:Math.random()*2-1,ys:Math.random()*2-1,update:function(){
 ctx.beginPath()
 ctx.rect(this.x-16,this.y-16,32,32)
 ctx.closePath()
@@ -91,7 +91,7 @@ ctx.stroke()
 this.x+=this.xs
 this.y+=this.ys
 if(this.x<0){this.xs+=0.25}
-if(960<this.x){this.xs-=0.25}
+if(c.width<this.x){this.xs-=0.25}
 if(this.y<0){this.ys+=0.25}
 if(640<this.y){this.ys-=0.25}
 }}},5000)
@@ -109,13 +109,13 @@ ctx.stroke()
 this.x+=this.xs
 this.y+=this.ys
 if(this.x<0){this.xs+=0.25}
-if(960<this.x){this.xs-=0.25}
+if(c.width<this.x){this.xs-=0.25}
 if(this.y<0){this.ys+=0.25}
 if(640<this.y){this.ys-=0.25}
 }}}
 setInterval(function(){
 id++
-sun2[id]={x:Math.random()*960,y:Math.random()*640,xs:Math.random()*2-1,ys:Math.random()*2-1,update:function(){
+sun2[id]={x:Math.random()*c.width,y:Math.random()*c.height,xs:Math.random()*2-1,ys:Math.random()*2-1,update:function(){
 ctx.beginPath()
 ctx.arc(this.x,this.y,16,0,2*Math.PI)
 ctx.closePath()
@@ -127,9 +127,9 @@ ctx.stroke()
 this.x+=this.xs
 this.y+=this.ys
 if(this.x<0){this.xs+=0.25}
-if(960<this.x){this.xs-=0.25}
+if(c.width<this.x){this.xs-=0.25}
 if(this.y<0){this.ys+=0.25}
-if(640<this.y){this.ys-=0.25}
+if(c.height<this.y){this.ys-=0.25}
 for(id in player){
 player[id].xs+=4*(player[id].x-this.x)/(Math.pow(Math.pow(player[id].x-this.x,2)+Math.pow(player[id].y-this.y,2),0.5)*(Math.pow(Math.pow(player[id].x-this.x,2)+Math.pow(player[id].y-this.y,2),0.5)))
 player[id].ys+=4*(player[id].y-this.y)/(Math.pow(Math.pow(player[id].x-this.x,2)+Math.pow(player[id].y-this.y,2),0.5)*(Math.pow(Math.pow(player[id].x-this.x,2)+Math.pow(player[id].y-this.y,2),0.5)))

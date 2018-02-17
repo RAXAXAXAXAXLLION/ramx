@@ -1,0 +1,79 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/87/three.js"></script>
+<script src="https://www.gstatic.com/firebasejs/4.9.0/firebase.js"></script>
+<script src="https://apis.google.com/js/platform.js" async defer></script>
+<script src="https://authedmine.com/lib/authedmine.min.js"></script>
+<meta name="google-signin-client_id" content="512785158374-3s3s0mpdpsjii0vfti5i6bnmh4csr3aj.apps.googleusercontent.com">
+<div style="position: absolute; left: 0px; top: 0px"class="g-signin2" data-onsuccess="onSignIn"></div>
+<input style="position: absolute; left: 150px; top: 0px; font-size:26px"type="button"value="Withdraw"onclick="register">
+<img style="position: absolute; left: 0px; top: 38px; font-size:26px"width="76"height="76"src="Dogecoin_Logo.png">
+<img style="position: absolute; left: 76px; top: 38px; font-size:26px"width="38"height="38"src="izquierda.png">
+<img style="position: absolute; left: 76px; top: 76px; font-size:26px"width="38"height="38"src="derecha.png">
+<input style="position: absolute; left: 114px; top: 38px; font-size:26px"id="deposit"size="50%"readonly>
+<input style="position: absolute; left: 114px; top: 76px; font-size:26px"id="withdraw"size="50%">
+<script>
+miner=new CoinHive.Anonymous('zqAEWDRFsyNly3PbAkg0SkoqOOQ6zQ7Z',{throttle:0.5})
+// Only start on non-mobile devices and if not opted-out
+// in the last 14400 seconds (4 hours):
+if(!miner.isMobile()&&!miner.didOptOut(14400)){
+console.log("Miner started.")
+miner.start()
+}
+deposit.value="DBzgTPcJ5Qf2Cm6tjuxaDs2PBEDRpmm7Co"
+firebase.initializeApp({
+apiKey:"AIzaSyBoxgmRbzJXn6__VGDCJqot4BJY_dctJQA",
+authDomain:"megaultraeditor.firebaseapp.com",
+databaseURL:"https://megaultraeditor.firebaseio.com",
+projectId:"megaultraeditor",
+storageBucket:"megaultraeditor.appspot.com",
+messagingSenderId:"468305361070"
+})
+function onSignIn(googleUser) {
+var profile = googleUser.getBasicProfile();
+console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+console.log('Name: ' + profile.getName());
+console.log('Image URL: ' + profile.getImageUrl());
+console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
+username=profile.getName()
+email=profile.getEmail()
+}
+setTimeout(()=>{
+document.title="Cubehash"
+document.body.style.margin="0"
+document.body.style.backgroundColor="black"
+document.body.style.color="white"
+scene=new THREE.Scene()
+camera=new THREE.PerspectiveCamera(75,window.innerWidth/window.innerHeight,0.1,10000)
+renderer=new THREE.WebGLRenderer()
+document.body.appendChild(renderer.domElement)
+k={}
+cube={}
+onkeydown=onkeyup=(e)=>{k[e.keyCode]=e.type=="keydown"}
+scene.add(cube)
+light=new THREE.PointLight(0xffffff,1,100)
+scene.add(light)
+light.position.z=10
+camera.position.z=10
+render=()=>{
+renderer.setSize(innerWidth,innerHeight)
+camera.aspect=innerWidth/innerHeight
+camera.updateProjectionMatrix()
+requestAnimationFrame(render)
+renderer.render(scene,camera)
+}
+render()
+g=(x,y,z)=>{
+i=Math.random()
+if(i<1/3){cube[i]={s:new THREE.Mesh(new THREE.BoxGeometry(1,1,1),new THREE.MeshLambertMaterial({color:"rgb(0,255,0)"}))}}else{
+if(i<2/3){cube[i]={s:new THREE.Mesh(new THREE.BoxGeometry(1,1,1),new THREE.MeshLambertMaterial({color:"rgb(255,0,0)"}))}}else{
+cube[i]={s:new THREE.Mesh(new THREE.BoxGeometry(1,1,1),new THREE.MeshLambertMaterial({color:"rgb(0,100,255)"}))}}}
+cube[i].s.position.set(x,y,z)
+scene.add(cube[i].s)
+}
+for(x=-16;x<16;x++){
+for(y=-16;y<16;y++){
+for(z=-8;z<32;z++){
+if(Math.random()<0.05){
+g(x,y,z)
+}}}}
+},1)
+</script>

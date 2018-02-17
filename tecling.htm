@@ -1,0 +1,46 @@
+<script>
+setTimeout(()=>{
+document.body.style.margin="0"
+c=document.createElement("canvas")
+document.body.appendChild(c)
+ctx=c.getContext("2d")
+onkeydown=(e)=>{
+if(e.keyCode==49){if(1100<usd){usd-=1100;ghs++}}
+if(e.keyCode==50){if(1<btc){btc--;usd+=9000}}
+}
+usd=0
+btc=0
+ghs=0
+charge=0
+battery=10
+magnets=1
+setInterval(()=>{
+if(0<battery){
+if(Math.random()<0.1){charge--;usd++}
+if(Math.random()<0.001){charge--;btc+=ghs}
+}
+if(charge<battery){
+charge+=magnets
+}else{
+charge=battery
+}
+c.width=innerWidth
+c.height=innerHeight
+ctx.fillRect(0,0,c.width,c.height)
+ctx.font="32px Arial"
+ctx.fillStyle="rgba(255,200,0,1)"
+ctx.fillText("฿:"+btc,8,32)
+ctx.font="32px Arial"
+ctx.fillStyle="rgba(0,255,0,1)"
+ctx.fillText("$:"+usd,8,32*2)
+ctx.font="32px Arial"
+ctx.fillStyle="rgba(100,100,100,1)"
+ctx.fillText("GHS:"+ghs,8,32*3)
+ctx.font="16px Arial"
+ctx.fillStyle="rgba(100,100,100,1)"
+ctx.fillText("Generating current with "+magnets+
+" magnets powering a magnet battery charged with"+
+" to "+charge+"/"+battery+" volts .",8,32*4)
+},1)
+},1)
+</script>

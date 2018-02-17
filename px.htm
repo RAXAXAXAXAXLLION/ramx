@@ -1,0 +1,40 @@
+<script>
+setTimeout(()=>{
+document.body.style.margin="0"
+document.body.style.backgroundColor="black"
+br=document.createElement("br")
+br2=document.createElement("br")
+br3=document.createElement("br")
+c=document.createElement("canvas")
+r=document.createElement("input")
+g=document.createElement("input")
+b=document.createElement("input")
+document.body.appendChild(c)
+c.style.border="4px solid #FFFFFF"
+document.body.appendChild(br)
+document.body.appendChild(r)
+document.body.appendChild(br2)
+document.body.appendChild(g)
+document.body.appendChild(br3)
+document.body.appendChild(b)
+r.size=50
+g.size=50
+b.size=50
+r.placeholder="Enter the red value here."
+g.placeholder="Enter the red value here."
+b.placeholder="Enter the red value here."
+r.value=200
+g.value=200
+b.value=200
+ctx=c.getContext("2d")
+setInterval(()=>{
+c.width=320
+c.height=320
+for(x=0;x<c.width;x++){
+for(y=0;y<c.height;y++){
+ctx.fillStyle="rgb("+eval(r.value)+","+eval(g.value)+","+eval(b.value)+")"
+ctx.fillRect(x,y,1,1)
+}}
+},1)
+},1)
+</script>
